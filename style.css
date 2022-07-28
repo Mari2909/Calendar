@@ -8,17 +8,23 @@ body {
 }
 
 #calendar {
-
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
+justify-content: center;
+align-items: stretch;
+height: 50vh;
 }
 
 .day {
-    border-bottom: 1px solid var (--light-gray);
-    border-right: 1px solid var (--light-gray);
-    text-align: center;
-    padding-top: 5px;
-font-size: 12px;
-cursor: pointer;
-transition: background-color 200ms, color 200ms;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 200ms, color 200ms;
 }
 
 .name {
