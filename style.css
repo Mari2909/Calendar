@@ -1,41 +1,125 @@
 :root {
-    --light-gray: #dadce0;
-    --light-blue: #1b9ce2;
+    --main-text-color: #333333;
+    --second-text-color: #666666;
 }
 
-body {
-    margin: 0;
+
+*{
+    box-sizing: border-box;
 }
 
-#calendar {
-display: grid;
-grid-template-columns: repeat(7, 1fr);
-grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
-justify-content: center;
-align-items: stretch;
-height: 50vh;
+body{
+    font-family: 'Inter', sans-serif;
 }
 
-.day {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+
+#calendar{
+    margin: 3vw auto 0;
+    padding: 72px;
+    max-width: 560px;
+    background: #FFFFFF;
+    border: 1px solid #EBEBEB;
+    box-shadow: 0px 4px 32px rgba(170, 170, 170, 0.03);
+    border-radius: 12px;
+    }
     
-    font-size: 12px;
+
+.month{
+    display: grid;
+    grid-template-columns: 3fr 1fr 3fr 1fr 1fr;
+    align-items: center;
+    margin: 0;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    width: 100%;
+    color: var(--main-text-color);
+    list-style: none;
+}
+
+.month li{
+    grid-column: 1/2;
+    justify-self: start;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    letter-spacing: 0.1rem;
+    font-weight: 700;
+}
+
+.month li.prev,
+.month li.next{
     cursor: pointer;
-    transition: background-color 200ms, color 200ms;
+    justify-self: center;
+    font-size: 0.73em;
 }
 
-.name {
-    padding-bottom: 5px;
+.month li.prev {
+    grid-column: 4/5;
 }
 
-.weekend {
-    color: var(--light-blue);
+.month li.next{
+    grid-column: 5/6;
 }
 
-.selected {
-    background-color: var(--light-blue);
-    color: white;
+
+.month li.year-name{
+    grid-column: 2/3;
+    padding-left: 1rem;
+    justify-self: start;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    letter-spacing: 0.1rem;
+    font-weight: 700;
+}
+
+
+.weekdays{
+    margin: 0;
+    padding: 1rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: left;
+}
+
+.weekdays li{
+    display: inline-block;
+    flex: 0 0 calc(100% / 7);
+    text-align: center;
+    color: var(--main-text-color);
+    font-size: 1.3rem;
+    line-height: 1.4;
+    letter-spacing: 0.1rem;
+    font-weight: 500;
+    
+}
+
+
+.days{
+    margin: 0;
+    padding: 1rem 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-content: flex-start;
+    height: 14rem;
+}
+
+.days li{
+    padding: 0.5rem;
+    list-style: none;
+    display: inline-block;
+    flex: 0 0 calc(100% / 7);
+    text-align: center;
+    color: var(--second-text-color);
+    font-size: 1.1rem;
+    line-height: 1rem;
+}
+
+.days li.date-now{
+    color: #000;
+    font-weight: 700;
 }

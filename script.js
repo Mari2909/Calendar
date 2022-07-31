@@ -1,28 +1,65 @@
-const calendar = document.querySelector("#calendar");
+let nowDate = new Date(),
+    nowDateNumber = nowDate.getDate(),
+    nowMonth = nowDate.getMonth(),
+    nowYear = nowDate.getFullYear(),
+    container = document.getElementById('calendar'),
+    monthContainer = container.getElementsByClassName('month-name')[0],
+    yearContainer = container.getElementsByClassName('year-name')[0],
+    daysContainer = container.getElementsByClassName('days')[0],
+    prev = container.getElementsByClassName('prev')[0],
+    next = container.getElementsByClassName('next')[0],
+    monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-const getDayName = day => {
+let curDate = nowDate.setMonth(nowDate.getMonth() - 1);
+console.log(nowDate.getFullYear());
 
-    const date = new Date(2018, 0, day);
+function setMonthCalendar(year, month) {
+    let monthDays = new Date(year, month + 1, 0).getDate(),
+        monthPrefix = new Date(year, month, 0).getDay(),
+        monthDaysText = '';
+    monthContainer.textContent = monthName[month];
+    yearContainer.textContent = year;
+    daysContainer.innerHTML = '';
 
-    return new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(date);
-
-}
-
-for (let day = 1; day <= 31; day++) {
-
-    let name = "";
-    if (day <= 7) {
-        const dayName = getDayName(day);
-        name = `<div class = "name">${dayName}</div>`;
+    if (monthPrefix > 0) {
+        for (let i = 1; i <= monthPrefix; i++) {
+            monthDaysText += '<li></li>';
+        }
     }
 
+    for (let i = 1; i <= monthDays; i++) {
+        monthDaysText += '<li>' + i + '</li>';
+    }
 
-    calendar.insertAdjacentHTML("beforeend", `<div class="day">${name}${day}</div>`);
+    daysContainer.innerHTML = monthDaysText;
+
+    if (month == nowMonth && year == nowYear) {
+        days = daysContainer.getElementsByTagName('li');
+        days[monthPrefix + nowDateNumber - 1].classList.add('date-now');
+    }
 }
 
-document.querySelectorAll("#calendar .day").forEach(day => {
-    day.addEventListener("click", event => {
-        event.currentTarget.classList.toggle("selected");
-    });
-});
+setMonthCalendar(nowYear, nowMonth);
 
+prev.onclick = function () {
+    let curDate = new Date(yearContainer.textContent, monthName.indexOf(monthContainer.textContent));
+
+    curDate.setMonth(curDate.getMonth() - 1);
+
+    let curYear = curDate.getFullYear(),
+        curMonth = curDate.getMonth();
+
+    setMonthCalendar(curYear, curMonth);
+    console.log(monthName.indexOf(monthContainer.textContent));
+}
+
+next.onclick = function () {
+    let curDate = new Date(yearContainer.textContent, monthName.indexOf(monthContainer.textContent));
+
+    curDate.setMonth(curDate.getMonth() + 1);
+
+    let curYear = curDate.getFullYear(),
+        curMonth = curDate.getMonth();
+
+    setMonthCalendar(curYear, curMonth);
+}
