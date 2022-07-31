@@ -1,6 +1,7 @@
 :root {
     --main-text-color: #333333;
     --second-text-color: #666666;
+    --color-selectday:#FB3F4A;
 }
 
 
@@ -109,12 +110,13 @@ body{
 }
 
 .days li{
-    padding: 0.5rem;
+    width: 56px;
+    height: 56px;
     list-style: none;
-    display: inline-block;
+    display: flex;
     flex: 0 0 calc(100% / 7);
-    text-align: center;
-    color: var(--second-text-color);
+    justify-content: center;
+    align-items: center;
     font-size: 1.1rem;
     line-height: 1rem;
 }
@@ -122,4 +124,14 @@ body{
 .days li.date-now{
     color: #000;
     font-weight: 700;
+}
+
+.day {
+    color: var(--second-text-color);
+}
+
+.selected {
+    border-radius: 50%;
+    background-color: var(--color-selectday);
+    color: white;
 }

@@ -28,7 +28,7 @@ function setMonthCalendar(year, month) {
     }
 
     for (let i = 1; i <= monthDays; i++) {
-        monthDaysText += '<li>' + i + '</li>';
+        monthDaysText += '<li class="day">' + i + '</li>';
     }
 
     daysContainer.innerHTML = monthDaysText;
@@ -63,3 +63,9 @@ next.onclick = function () {
 
     setMonthCalendar(curYear, curMonth);
 }
+
+document.querySelectorAll("#calendar .day").forEach(day => {
+    day.addEventListener("click", event => {
+        event.currentTarget.classList.toggle("selected");
+    });
+});
