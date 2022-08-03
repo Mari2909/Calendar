@@ -10,8 +10,8 @@ let nowDate = new Date(),
     next = container.getElementsByClassName('next')[0],
     monthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+
 let curDate = nowDate.setMonth(nowDate.getMonth() - 1);
-console.log(nowDate.getFullYear());
 
 function setMonthCalendar(year, month) {
     let monthDays = new Date(year, month + 1, 0).getDate(),
@@ -41,6 +41,32 @@ function setMonthCalendar(year, month) {
 
 setMonthCalendar(nowYear, nowMonth);
 
+
+function removeClass(id) {
+    let element = document.getElementById(id);
+    element.classList.remove('d-none');
+}
+
+function addClass(id) {
+    let element = document.getElementById(id);
+    element.classList.add('d-none');
+}
+
+function selectDay() {
+    document.addEventListener("click", function (e) {
+        if (e.target.className == "day" || e.target.className == "day date-now") {
+            e.target.classList.toggle("selected");
+            removeClass('container');
+        }
+        else if (e.target.className == "day selected" || e.target.className == "day date-now selected") {
+            e.target.classList.toggle("selected");
+            addClass('container');
+        }
+    });
+}
+
+selectDay()
+
 prev.onclick = function () {
     let curDate = new Date(yearContainer.textContent, monthName.indexOf(monthContainer.textContent));
 
@@ -50,7 +76,7 @@ prev.onclick = function () {
         curMonth = curDate.getMonth();
 
     setMonthCalendar(curYear, curMonth);
-    console.log(monthName.indexOf(monthContainer.textContent));
+    selectDay();
 }
 
 next.onclick = function () {
@@ -62,10 +88,51 @@ next.onclick = function () {
         curMonth = curDate.getMonth();
 
     setMonthCalendar(curYear, curMonth);
+    selectDay();
 }
 
-document.querySelectorAll("#calendar .day").forEach(day => {
-    day.addEventListener("click", event => {
-        event.currentTarget.classList.toggle("selected");
-    });
+
+// Добавление заметок
+
+const button = document.querySelector('button');
+let notes = [];
+
+document.addEventListener("DOMContentLoaded", function (event) {
+    let lastNotes = localStorage.getItem('notes');
+    if (lastNotes != null) {
+        const arr = JSON.parse(lastNotes);
+        const filterArr = arr.filter(el => el !== null);
+        let lastNotesString = "";
+        for (let elem of filterArr) {
+            lastNotesString += elem;
+        }
+        document.getElementById('note').innerHTML = lastNotesString;
+        notes.push(lastNotesString);
+    }
 });
+
+function getNote() {
+    let time = document.querySelector('input').value;
+    console.log(time);
+    let text = document.querySelector('textarea').value;
+    if (text != '') {
+        const note = `<div class="timenote">${time}</div>` + text;
+        const result = `<div class="col">${note}</div>`;
+        return result;
+    } else {
+        return alert("Пустая заметка!");
+    }
+}
+
+function commentOutput() {
+    notes.push(getNote());
+    localStorage.setItem('notes', JSON.stringify(notes));
+    notes = JSON.parse(localStorage.getItem('notes'));
+    const filterNotes = notes.filter(el => el !== null);
+    let notesString = "";
+    for (let note of filterNotes) {
+        notesString += note;
+    }
+    document.getElementById('note').innerHTML = notesString;
+}
+button.addEventListener("click", commentOutput);

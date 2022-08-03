@@ -11,13 +11,14 @@
 
 body{
     font-family: 'Inter', sans-serif;
+    background-color: #090A0C;
 }
 
 
 #calendar{
     margin: 3vw auto 0;
     padding: 72px;
-    max-width: 560px;
+    width: 560px;
     background: #FFFFFF;
     border: 1px solid #EBEBEB;
     box-shadow: 0px 4px 32px rgba(170, 170, 170, 0.03);
@@ -30,7 +31,6 @@ body{
     grid-template-columns: 3fr 1fr 3fr 1fr 1fr;
     align-items: center;
     margin: 0;
-    padding: 3rem 2rem 2rem;
     text-align: center;
     width: 100%;
     color: var(--main-text-color);
@@ -106,7 +106,6 @@ body{
     flex-wrap: wrap;
     justify-content: left;
     align-content: flex-start;
-    height: 14rem;
 }
 
 .days li{
@@ -135,3 +134,21 @@ body{
     background-color: var(--color-selectday);
     color: white;
 }
+
+.underline {
+    border-bottom: 1px solid #ced4da;
+    }
+    
+.note {
+    color: var(--main-text-color);
+    font-size: 1.3rem;
+    line-height: 1.4;
+    letter-spacing: 0.1rem;
+    font-weight: 500;
+}
+
+.timenote {
+    color: var(--second-text-color);
+    font-size: 0.9rem;
+}
+

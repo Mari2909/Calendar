@@ -30,9 +30,28 @@
             <li>Su</li>
             </ul>
         <ul class="days"></ul>
-    </div>
+        <div class="underline"></div>
+        <div id="note" class="note"></div>
 
+        <form class="container d-none" id="container">
+            <div class="mb-3">
+                <input type="time">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea">
+                    <span id="commentError"></span>
+                    </label>
+                    <textarea class="form-control" id="exampleFormControlTextarea" rows="3" placeholder="Заметка"></textarea>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-block mb-3">Сохранить</button>
+        </form>
+    </div>
+    
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+    
 </body>
 
 </html>
