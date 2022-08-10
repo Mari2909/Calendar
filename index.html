@@ -31,7 +31,6 @@
             </ul>
         <ul class="days"></ul>
         <div class="underline"></div>
-        <div id="note" class="note"></div>
 
         <form class="container d-none" id="container">
             <div class="mb-3">
@@ -43,8 +42,9 @@
                     <textarea class="form-control" id="exampleFormControlTextarea" rows="3" placeholder="Заметка"></textarea>
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-sm btn-block mb-3">Сохранить</button>
+            <button type="button" class="btn btn-primary btn-sm btn-block mb-3" data-toggle="modal" data-target="#myModal">Сохранить</button>
         </form>
+        <div id="note" class="note"></div>
     </div>
     
     <script src="script.js"></script>
